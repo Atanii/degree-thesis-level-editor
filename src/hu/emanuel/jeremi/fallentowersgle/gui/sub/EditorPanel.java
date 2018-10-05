@@ -224,10 +224,7 @@ public class EditorPanel extends JPanel implements MouseListener, MouseMotionLis
 							lastGridX,
 							lastGridY,
 							gui.chosenTile,
-							0,
-							gui.ta.inside, 
-							gui.ta.virtual,
-							gui.ta.storey
+							gui.ta.inside
 				));
 			} else {
 				walls.add(
@@ -235,10 +232,7 @@ public class EditorPanel extends JPanel implements MouseListener, MouseMotionLis
 							lastGridX,
 							lastGridY,
 							gui.chosenTile,
-							gui.ta.height,
-							gui.ta.inside, 
-							gui.ta.virtual,
-							gui.ta.storey
+							gui.ta.inside
 				));
 			}			
 			return;

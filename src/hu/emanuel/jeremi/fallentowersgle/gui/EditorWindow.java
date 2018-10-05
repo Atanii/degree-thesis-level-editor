@@ -60,7 +60,7 @@ public class EditorWindow extends JFrame implements ActionListener {
 		public static int _id = (int) ( Math.random() * 1000 ) >> 1;
 		
 		public int id;
-		public int height, ceiling, floor, wall, inside, virtual, storey;
+		public int ceiling, floor, wall, inside;
 		public int value;
 		public int sendercose, msgcode, time;
 		
@@ -83,13 +83,10 @@ public class EditorWindow extends JFrame implements ActionListener {
 			this.id = _id++;
 		}
 		
-		public TileAttributes(int height, int ceiling, int floor, int wall, int inside, int virtual) {
-			this.height = height;
+		public TileAttributes(int ceiling, int floor, int wall, int inside) {
 			this.ceiling = ceiling;
 			this.floor = floor;
 			this.wall = wall;
-			this.inside = inside;
-			this.virtual = virtual;
 			this.id = _id++;
 		}
 	}

@@ -32,9 +32,7 @@ public final class TowHandler {
 	
 	//private String PATH = "C:\\test.tow";
 	
-	private class BlankMapException extends Exception {
-		
-	}
+	private class BlankMapException extends Exception {}
 	
 	public class LevelData {
 		public int playerX, playerY;
@@ -103,10 +101,7 @@ public final class TowHandler {
 					Integer.toString(d.x) + ',' + 
 					Integer.toString(d.y) + ',' +
 					Integer.toString(d.fw) + ',' +
-					Integer.toString(d.height) + ',' +
-					Integer.toString(d.inside) + ',' +
-					Integer.toString(d.virtual) + ',' +
-					Integer.toString(d.storey) + ';'
+					Integer.toString(d.inside) + ','
 				);
 			}
 			
@@ -278,9 +273,6 @@ public final class TowHandler {
 				tokenizer = new StringTokenizer(sc.next(), ",");
 				
 				d.walls.add( new CellData(
-					Integer.parseInt(tokenizer.nextToken()),
-					Integer.parseInt(tokenizer.nextToken()),
-					Integer.parseInt(tokenizer.nextToken()),
 					Integer.parseInt(tokenizer.nextToken()),
 					Integer.parseInt(tokenizer.nextToken()),
 					Integer.parseInt(tokenizer.nextToken()),

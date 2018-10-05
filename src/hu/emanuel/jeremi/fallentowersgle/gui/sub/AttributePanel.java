@@ -69,19 +69,13 @@ public class AttributePanel extends JPanel {
 		
 		// wall
 		JLabel l_ceiling;
-		JLabel l_height;
 		JTextField ceiling;
-		JTextField height;
 		
 	// wall
 	// inside ceiling floor wall height virtual storey //
 	JPanel chbox;
 		JLabel insideLabel;
 		JCheckBox inside;
-		JLabel virtualLabel;
-		JCheckBox virtual;
-		JLabel storeyLabel;
-		JCheckBox storey;
 		
 	JButton submit;
 		
@@ -132,7 +126,6 @@ public class AttributePanel extends JPanel {
 		l_sender = new JLabel("sender", JLabel.RIGHT);
 		l_message = new JLabel("message", JLabel.RIGHT);
 		l_ceiling = new JLabel("ceiling", JLabel.RIGHT);
-		l_height = new JLabel("height", JLabel.RIGHT);
 		
 		id = new JTextField(10);
 		value = new JTextField(10);
@@ -140,17 +133,12 @@ public class AttributePanel extends JPanel {
 		sendercode = new JTextField(10);
 		messagecode = new JTextField(10);
 		ceiling = new JTextField(10);
-		height = new JTextField(10);
 		
 		// Checkboxes:
 		chbox = new JPanel();
 		chbox.setLayout(new FlowLayout());
 		insideLabel = new JLabel(Labels.inside);
 		inside = new JCheckBox();
-		virtualLabel = new JLabel(Labels.virtual);
-		virtual = new JCheckBox();
-		storeyLabel = new JLabel(Labels.storey);
-		storey = new JCheckBox();
 		
 		submit = new JButton(Labels.attributeSubmit);
 		/////////////////////////////////////////////
@@ -238,10 +226,6 @@ public class AttributePanel extends JPanel {
 		textPanel.add(sendercode);
 		textPanel.add(l_message);
 		textPanel.add(messagecode);
-		//textPanel.add(l_ceiling);
-		//textPanel.add(ceiling);
-		textPanel.add(l_height);
-		textPanel.add(height);
 		
 		textPanel.setBackground(Color.black);
 		id.setBackground(Color.black);
@@ -250,13 +234,10 @@ public class AttributePanel extends JPanel {
 		sendercode.setBackground(Color.black);
 		messagecode.setBackground(Color.black);
 		ceiling.setBackground(Color.black);
-		height.setBackground(Color.black);
 		
 		// Checkboxes:
 		chbox.setBackground(Color.black);
 		inside.setBackground(Color.black);
-		virtual.setBackground(Color.black);
-		storey.setBackground(Color.black);
 		
 		submit.setBackground(Color.BLACK);
 		submit.setForeground(Color.GREEN);
@@ -271,10 +252,6 @@ public class AttributePanel extends JPanel {
 		// Checkboxes:
 		chbox.add(insideLabel);
 		chbox.add(inside);
-		chbox.add(virtualLabel);
-		chbox.add(virtual);
-		chbox.add(storeyLabel);
-		chbox.add(storey);
 		
 		chbox.add(submit);
 		
@@ -299,18 +276,15 @@ public class AttributePanel extends JPanel {
 		labels = new ArrayList<>();
 		labels.addAll(Arrays.asList(
 				//spriteRadio, wallRadio, 
-				insideLabel, virtualLabel, storeyLabel,
+				insideLabel,
 				id, time, value, sendercode, messagecode,
-				height, ceiling,
-				l_entity_id, l_time ,l_value ,l_sender ,l_message ,l_ceiling ,l_height,
-				ceiling, inside, virtual, storey
+				ceiling,
+				l_entity_id, l_time ,l_value ,l_sender ,l_message ,l_ceiling ,
+				ceiling, inside
 		));
 		
 		setAllLabelsColor(Color.WHITE);
 		disableAllNonRadio();
-		
-		// Default values:
-		height.setText(String.valueOf(SIZE));
 		
 		refreshTileAttr();
 	}
@@ -357,26 +331,13 @@ public class AttributePanel extends JPanel {
 		disableAllNonRadio();
 		
 		ceiling.setEnabled(true);
-		height.setEnabled(true);
 		inside.setEnabled(true);
-		virtual.setEnabled(true);
-		storey.setEnabled(true);
 		l_ceiling.setEnabled(true);
-		l_height.setEnabled(true);
 		insideLabel.setEnabled(true);
-		virtualLabel.setEnabled(true);
-		storeyLabel.setEnabled(true);
 		
 		ceiling.setVisible(true);
-		height.setVisible(true);
-		inside.setVisible(true);
-		virtual.setVisible(true);
-		storey.setVisible(true);
 		l_ceiling.setVisible(true);
-		l_height.setVisible(true);
 		insideLabel.setVisible(true);
-		virtualLabel.setVisible(true);
-		storeyLabel.setVisible(true);
 	}
 	
 	private void enableMsgAttributes() {
@@ -456,14 +417,7 @@ public class AttributePanel extends JPanel {
 		
 		switch(gui.chosenType) {
 		case wall:
-			if (height.getText().isEmpty()) {
-				JOptionPane.showMessageDialog(null, "Height is not defined!");
-				return;
-			}
-			temp.height = Integer.parseInt(height.getText());
 			temp.inside = inside.isSelected() ? 1 : 0;
-			temp.virtual = virtual.isSelected() ? 1 : 0;
-			temp.storey = storey.isSelected() ? 1 : 0;
 			break;
 		case door:
 			if (value.getText().isEmpty()) {

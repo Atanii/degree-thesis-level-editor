@@ -20,20 +20,16 @@ public class MapData {
 	}
 	
 	static public class CellData extends Data {
-		public int inside, ceiling, floor, wall, height, virtual, storey;
+		public int inside, ceiling, floor, wall;
 		public int fw;
 		
 		// x y fw height inside virtual storey //
-		public CellData(int x, int y, 
-			int fw, int height, int inside, int virtual, int storey
+		public CellData(int x, int y, int fw, int inside
 		) {
 			super(x, y);
 			this.inside = inside; 
 			this.floor = fw;
 			this.wall = fw;
-			this.height = height;
-			this.virtual = virtual;
-			this.storey = storey;
 			this.fw = fw;
 		}
 		
