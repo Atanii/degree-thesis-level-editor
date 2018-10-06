@@ -122,8 +122,7 @@ public final class TowHandler {
 					pw.print(
 						Integer.toString(d.x) + ',' + 
 						Integer.toString(d.y) + ',' +
-						Integer.toString(d.id) + ',' +
-						Integer.toString(d.value) + ';'
+						Integer.toString(d.code) + ';'
 					);
 				}
 			}
@@ -306,7 +305,6 @@ public final class TowHandler {
 						Integer.parseInt(tokenizer.nextToken()),
 						gui.chosenDoorClosed,
 						gui.chosenDoorOpened,
-						Integer.parseInt(tokenizer.nextToken()),
 						Integer.parseInt(tokenizer.nextToken())
 					));
 				}

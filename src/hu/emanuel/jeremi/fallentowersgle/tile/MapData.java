@@ -23,7 +23,7 @@ public class MapData {
 		public int inside, ceiling, floor, wall;
 		public int fw;
 		
-		// x y fw height inside virtual storey //
+		// x y fw height inside //
 		public CellData(int x, int y, int fw, int inside
 		) {
 			super(x, y);
@@ -40,16 +40,15 @@ public class MapData {
 	}
 	
 	static public class DoorData extends Data {
-		public int tex, opened, closed, id, value;
+		public int tex, opened, closed, code;
 		
 		// x y closed opened id value //
-		public DoorData(int x, int y, int closed, int opened,
-						int id, int value
+		public DoorData(int x, int y, int closed, int opened, int code
 		) {
 			super(x, y);
 			this.opened = opened;
 			this.tex = this.closed = closed;
-			this.id = id;
+			this.code = code;
 		}
 		
 		@Override

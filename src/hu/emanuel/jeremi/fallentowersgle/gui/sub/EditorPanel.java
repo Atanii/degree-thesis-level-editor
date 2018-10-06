@@ -244,7 +244,6 @@ public class EditorPanel extends JPanel implements MouseListener, MouseMotionLis
 						lastGridY,
 						gui.chosenDoorClosed,
 						gui.chosenDoorOpened,
-						gui.ta.id(),
 						gui.ta.value
 			));
 			return;
