@@ -226,6 +226,8 @@ public class AttributePanel extends JPanel {
 		textPanel.add(sendercode);
 		textPanel.add(l_message);
 		textPanel.add(messagecode);
+        //textPanel.add(insideLabel);
+		//textPanel.add(inside);
 		
 		textPanel.setBackground(Color.black);
 		id.setBackground(Color.black);
@@ -252,7 +254,6 @@ public class AttributePanel extends JPanel {
 		// Checkboxes:
 		chbox.add(insideLabel);
 		chbox.add(inside);
-		
 		chbox.add(submit);
 		
 		///// Main panels:
@@ -276,11 +277,11 @@ public class AttributePanel extends JPanel {
 		labels = new ArrayList<>();
 		labels.addAll(Arrays.asList(
 				//spriteRadio, wallRadio, 
-				insideLabel,
+				insideLabel, inside,
 				id, time, value, sendercode, messagecode,
 				ceiling,
 				l_entity_id, l_time ,l_value ,l_sender ,l_message ,l_ceiling ,
-				ceiling, inside
+				ceiling
 		));
 		
 		setAllLabelsColor(Color.WHITE);
@@ -320,24 +321,24 @@ public class AttributePanel extends JPanel {
 	
 	private void enableSpriteAttributes() {
 		disableAllNonRadio();
-		
+		/*
 		l_value.setVisible(true);
 		value.setVisible(true);
 		l_value.setEnabled(true);
 		value.setEnabled(true);
+        */
 	}
 	
 	private void enableWallAttributes() {
 		disableAllNonRadio();
 		
+        /*
+        l_ceiling.setVisible(true);
 		ceiling.setEnabled(true);
-		inside.setEnabled(true);
-		l_ceiling.setEnabled(true);
-		insideLabel.setEnabled(true);
-		
-		ceiling.setVisible(true);
-		l_ceiling.setVisible(true);
-		insideLabel.setVisible(true);
+        */
+        
+        insideLabel.setEnabled(true);
+		inside.setEnabled(true);		
 	}
 	
 	private void enableMsgAttributes() {

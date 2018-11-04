@@ -22,6 +22,7 @@ public class MapData {
 	static public class CellData extends Data {
 		public int inside, ceiling, floor, wall;
 		public int fw;
+        public int isWall;
 		
 		// x y fw height inside //
 		public CellData(int x, int y, int fw, int inside
@@ -31,6 +32,17 @@ public class MapData {
 			this.floor = fw;
 			this.wall = fw;
 			this.fw = fw;
+            this.isWall = 1;
+		}
+        
+        public CellData(int x, int y, int fw, int inside, boolean isWall
+		) {
+			super(x, y);
+			this.inside = inside; 
+			this.floor = fw;
+			this.wall = fw;
+			this.fw = fw;
+            this.isWall = isWall ? 1 : 0;
 		}
 		
 		@Override

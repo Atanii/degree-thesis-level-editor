@@ -44,6 +44,7 @@ public class EditorPanel extends JPanel implements MouseListener, MouseMotionLis
 	 * 0000 0001 -> default
 	 * 0000 0010 -> player pose	-- deactivated by clicking and placing a position
 	 * 0000 0100 -> floor
+     * 0000 1000 -> inside
 	 */
 	private byte MODE_FLAG = 0b0000_0001;
 	
@@ -106,25 +107,51 @@ public class EditorPanel extends JPanel implements MouseListener, MouseMotionLis
 				toggleFloorMode();
 			}
 		});
+        
+        this.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(
+				KeyStroke.getKeyStroke("I"), "ToggleInside"
+		);
+		this.getActionMap().put("ToggleInside", new AbstractAction("ToggleInside") {
+
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 7009839466547179083L;
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				toggleInsideMode();
+			}
+		});
 	}
 	
 	private void togglePlayerPoseMode() {
 		if ( (MODE_FLAG & 0b0000_0010) == 0b0000_0000 ) {
-			MODE_FLAG = 0b0000_0010;
+			MODE_FLAG |= 0b0000_0010;
 			System.out.println("<<< PLAYER POSE MODE >>>");
 		} else {
-			MODE_FLAG >>= 1;
+			MODE_FLAG &= ~0b0000_0010;
 			System.out.println("<<< PLAYER POSE MODE DEACTIVATED >>>");
 		}
 	}
 	
 	private void toggleFloorMode() {
 		if ( (MODE_FLAG & 0b0000_0100) == 0b0000_0000 ) {
-			MODE_FLAG = 0b0000_0100;
+			MODE_FLAG |= 0b0000_0100;
 			System.out.println("<<< FLOOR MODE >>>");
 		} else {
-			MODE_FLAG >>= 2;
+			MODE_FLAG &= ~0b0000_0100;
 			System.out.println("<<< FLOOR DEACTIVATED >>>");
+		}
+	}
+    
+    private void toggleInsideMode() {
+		if ( (MODE_FLAG & 0b0000_1000) == 0b0000_0000 ) {
+			MODE_FLAG |= 0b0000_1000;
+			System.out.println("<<< INSIDE >>>");
+		} else {
+			MODE_FLAG &= ~0b0000_1000;
+			System.out.println("<<< OUTSIDE >>>");
 		}
 	}
 	
@@ -218,13 +245,14 @@ public class EditorPanel extends JPanel implements MouseListener, MouseMotionLis
 		switch(t) {
 		case wall:
 			// x y fw height inside virtual storey //
-			if (MODE_FLAG == 0b0000_0100) {
+			if ( (MODE_FLAG & 0b0000_0100) != 0 ) {
 				walls.add(
 					new CellData(
 							lastGridX,
 							lastGridY,
 							gui.chosenTile,
-							gui.ta.inside
+							(MODE_FLAG & 0b0000_1000) == 0b0000_0000 ? 0 : 1,
+                            false
 				));
 			} else {
 				walls.add(
@@ -232,7 +260,8 @@ public class EditorPanel extends JPanel implements MouseListener, MouseMotionLis
 							lastGridX,
 							lastGridY,
 							gui.chosenTile,
-							gui.ta.inside
+							(MODE_FLAG & 0b0000_1000) == 0b0000_0000 ? 0 : 1,
+                            true
 				));
 			}			
 			return;
@@ -387,8 +416,10 @@ public class EditorPanel extends JPanel implements MouseListener, MouseMotionLis
 	public void mouseReleased(MouseEvent e) {
 		int x = (int) Math.floor(e.getX() / SIZE);
 		int y = (int) Math.floor(e.getY() / SIZE);
+        
+        System.out.println(x + " | " + y);
 		
-		if ( MODE_FLAG == 0b0000_0010 ) {
+		if ( (MODE_FLAG & 0b0000_0010) != 0 ) {
 			togglePlayerPoseMode();
 			gui.setPlayerPose(x,y);
 		}		

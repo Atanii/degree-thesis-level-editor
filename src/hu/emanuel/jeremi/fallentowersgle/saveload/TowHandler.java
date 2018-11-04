@@ -95,21 +95,36 @@ public final class TowHandler {
 			pw.println("MAP_CELLS");
 			
 			// MAP CELLS
-			// x y fw height inside virtual storey //
-			for(CellData d : walls) {
-				pw.print(
-					Integer.toString(d.x) + ',' + 
-					Integer.toString(d.y) + ',' +
-					Integer.toString(d.fw) + ',' +
-					Integer.toString(d.inside) + ','
-				);
+			// x y fw inside //
+			//for(CellData d : walls) {
+            CellData cell;
+            for(int i = 0; i < walls.size(); i++) {
+                if(i == walls.size() - 1) {
+                    cell = walls.get(i);
+                    pw.print(
+                        Integer.toString(cell.x) + ',' + 
+                        Integer.toString(cell.y) + ',' +
+                        Integer.toString(cell.fw) + ',' +
+                        Integer.toString(cell.inside) + ',' +
+                        Integer.toString(cell.isWall) + ';'
+                    );
+                } else {
+                    cell = walls.get(i);
+                    pw.print(
+                        Integer.toString(cell.x) + ',' + 
+                        Integer.toString(cell.y) + ',' +
+                        Integer.toString(cell.fw) + ',' +
+                        Integer.toString(cell.inside) + ',' +
+                        Integer.toString(cell.isWall) + ','
+                    );
+                }
 			}
-			
+			            
 			pw.print('\n');
 			pw.println("DOORS");
 			
 			// DOORS
-			// x y closed opened id value //
+			// closed opened x y code (id value) //
 			pw.print(Integer.toString(doors.size()) + ';');
 			System.out.println("Doors: " + doors.size());
 			if (doors.size() > 0) {
@@ -133,7 +148,9 @@ public final class TowHandler {
 			// SPRITES
 			// x y tile id //
 			pw.print(Integer.toString(sprites.size()) + ';');
-			pw.print('\n');
+            if(sprites.size() > 0) {
+                pw.print('\n');
+            }			
 			for(SpriteData d : sprites) {
 				pw.print(
 					Integer.toString(d.x) + ',' + 
@@ -149,7 +166,9 @@ public final class TowHandler {
 			// ENEMIES
 			// x y id type //
 			pw.print(Integer.toString(enemies.size()) + ';');
-			pw.print('\n');
+            if(enemies.size() > 0) {
+                pw.print('\n');
+            }			
 			for(EnemyData d : enemies) {
 				pw.print(
 					Integer.toString(d.x) + ',' + 
@@ -163,9 +182,11 @@ public final class TowHandler {
 			pw.println("ITEMS");
 			
 			// ITEMS
-			// x y _tile_ id value type //
+			// x y id value type //
 			pw.print(Integer.toString(items.size()) + ';');
-			pw.print('\n');
+            if(items.size() > 0) {
+                pw.print('\n');
+            }			
 			for(ItemData d : items) {
 				pw.print(
 					Integer.toString(d.x) + ',' + 
