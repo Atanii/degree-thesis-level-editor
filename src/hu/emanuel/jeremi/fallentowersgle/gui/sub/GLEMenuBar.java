@@ -9,19 +9,19 @@ import hu.emanuel.jeremi.fallentowersgle.gui.EditorWindow;
 
 public class GLEMenuBar extends JMenuBar {
 
-	EditorWindow gui;
-	JComboBox<Packs> texturepack;
-	
-	public GLEMenuBar(EditorWindow gui) {
-		this.gui = gui;
-		// ComboBox for selecting texture pack:
-		//texturepack = new JComboBox<>(Labels.glemenubarcomboboxelements);
-		texturepack = new JComboBox<>(Packs.values());
-		add(texturepack);
-		texturepack.addActionListener(e -> {
-			gui.setSelectedCategory( (Packs) texturepack.getSelectedItem() );
-		});
-		texturepack.setSelectedItem(Packs.mainframe);
-	}
+    EditorWindow gui;
+    JComboBox<Packs> texturepack;
+
+    public GLEMenuBar(EditorWindow gui) {
+        this.gui = gui;
+        // ComboBox for selecting texture pack:
+        //texturepack = new JComboBox<>(Labels.glemenubarcomboboxelements);
+        texturepack = new JComboBox<>(Packs.values());
+        add(texturepack);
+        texturepack.addActionListener(e -> {
+            gui.setSelectedCategory((Packs) texturepack.getSelectedItem());
+        });
+        texturepack.setSelectedItem(Packs.mainframe);
+    }
 
 }
