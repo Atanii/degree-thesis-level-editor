@@ -1,7 +1,5 @@
 package hu.emanuel.jeremi.fallentowersgle.tile;
 
-import static hu.emanuel.jeremi.fallentowersgle.tile.Tile64.*;
-
 public class Map {
 
     /**

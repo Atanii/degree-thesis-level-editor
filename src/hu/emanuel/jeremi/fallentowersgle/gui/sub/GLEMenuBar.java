@@ -3,7 +3,6 @@ package hu.emanuel.jeremi.fallentowersgle.gui.sub;
 import javax.swing.JComboBox;
 import javax.swing.JMenuBar;
 
-import hu.emanuel.jeremi.fallentowersgle.common.Labels;
 import hu.emanuel.jeremi.fallentowersgle.common.Packs;
 import hu.emanuel.jeremi.fallentowersgle.gui.EditorWindow;
 

@@ -61,6 +61,8 @@ public final class TowHandler {
             ArrayList<EnemyData> enemies = gui.getGridPane().enemies;
             ArrayList<ItemData> items = gui.getGridPane().items;
             ArrayList<MessageData> messages = gui.getGridPane().messages;
+            GoalData goal = gui.getGridPane().goal;
+            
 
             pw.println("MAP_VERSION");
 
@@ -203,7 +205,9 @@ public final class TowHandler {
             // MESSAGES
             // x y time id sendercode stringCode //
             pw.print(Integer.toString(messages.size()) + ';');
-            pw.print('\n');
+            if (messages.size() > 0) {
+                pw.print('\n');
+            }
             for (MessageData d : messages) {
                 pw.print(
                         Integer.toString(d.x) + ','
@@ -214,6 +218,12 @@ public final class TowHandler {
                         + Integer.toString(d.stringCode) + ';'
                 );
             }
+            
+            pw.print('\n');
+            pw.println("GOAL_DATA");
+
+            // GOAL DATA
+            pw.print(Integer.toString(goal.x) + ',' + Integer.toString(goal.y) + ';');
 
             System.out.println("<<< SAVED: " + PATH + " >>>");
         } catch (FileNotFoundException e) {

@@ -144,6 +144,12 @@ public class MapData {
             this.stringCode = stringCode;
         }
     }
+    
+    static public class GoalData extends Data {
+        public GoalData(int matrixX, int matrixY) {
+            super(matrixX, matrixY);
+        }
+    }
 
     public MapData(TextureLibrary tl) {
         this.tl = tl;

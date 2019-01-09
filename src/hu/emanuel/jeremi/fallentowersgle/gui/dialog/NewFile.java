@@ -1,11 +1,7 @@
 package hu.emanuel.jeremi.fallentowersgle.gui.dialog;
 
 import java.awt.Color;
-import java.awt.Dialog;
 import java.awt.FlowLayout;
-import java.awt.Frame;
-import java.awt.GraphicsConfiguration;
-import java.awt.Window;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;

@@ -34,7 +34,7 @@ public class EditorPanel extends JPanel implements MouseListener, MouseMotionLis
 
     public int w = 1000, h = 1000;
 
-    private int gridSize;
+    private final int gridSize;
     public int width, height;
     private final Color GRID_COLOR = Color.BLUE;
     private final Color BG_COLOR = Color.BLACK;
@@ -45,6 +45,7 @@ public class EditorPanel extends JPanel implements MouseListener, MouseMotionLis
 	 * 0000 0010 -> player pose	-- deactivated by clicking and placing a position
 	 * 0000 0100 -> floor
      * 0000 1000 -> inside
+     * 0001 0000 -> goal
      */
     private byte MODE_FLAG = 0b0000_0001;
 
@@ -54,6 +55,7 @@ public class EditorPanel extends JPanel implements MouseListener, MouseMotionLis
     public ArrayList<EnemyData> enemies;
     public ArrayList<ItemData> items;
     public ArrayList<MessageData> messages;
+    public GoalData goal;
 
     // MouseDragged
     private int lastGridX, lastGridY;
@@ -76,6 +78,7 @@ public class EditorPanel extends JPanel implements MouseListener, MouseMotionLis
         enemies = new ArrayList<>();
         items = new ArrayList<>();
         messages = new ArrayList<>();
+        goal = null;
 
         this.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(
                 KeyStroke.getKeyStroke("S"), "PlayerPose"
@@ -123,6 +126,22 @@ public class EditorPanel extends JPanel implements MouseListener, MouseMotionLis
                 toggleInsideMode();
             }
         });
+        
+        this.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(
+                KeyStroke.getKeyStroke("G"), "ToggleGoal"
+        );
+        this.getActionMap().put("ToggleGoal", new AbstractAction("ToggleGoal") {
+
+            /**
+             *
+             */
+            private static final long serialVersionUID = 7009839466547179083L;
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                toggleGoalMode();
+            }
+        });
     }
 
     private void togglePlayerPoseMode() {
@@ -152,6 +171,16 @@ public class EditorPanel extends JPanel implements MouseListener, MouseMotionLis
         } else {
             MODE_FLAG &= ~0b0000_1000;
             System.out.println("<<< OUTSIDE >>>");
+        }
+    }
+    
+    private void toggleGoalMode() {
+        if ((MODE_FLAG & 0b0001_0000) == 0b0000_0000) {
+            MODE_FLAG |= 0b0001_0000;
+            System.out.println("<<< PLACING GOAL >>>");
+        } else {
+            MODE_FLAG &= ~0b0001_0000;
+            System.out.println("<<< GOAL PLACED >>>");
         }
     }
 
@@ -424,7 +453,10 @@ public class EditorPanel extends JPanel implements MouseListener, MouseMotionLis
 
         System.out.println(x + " | " + y);
 
-        if ((MODE_FLAG & 0b0000_0010) != 0) {
+        if ((MODE_FLAG & 0b0001_0000) != 0) {
+            toggleGoalMode();
+            gui.setGoalPose(x, y);
+        } else if ((MODE_FLAG & 0b0000_0010) != 0) {
             togglePlayerPoseMode();
             gui.setPlayerPose(x, y);
         } else if (e.getButton() == MouseEvent.BUTTON1 && (x != lastGridX || y != lastGridY)) {

@@ -31,6 +31,7 @@ import hu.emanuel.jeremi.fallentowersgle.gui.sub.GLEMenuBar;
 import hu.emanuel.jeremi.fallentowersgle.gui.sub.SaveLoad;
 import hu.emanuel.jeremi.fallentowersgle.saveload.TowHandler;
 import hu.emanuel.jeremi.fallentowersgle.saveload.TowHandler.LevelData;
+import hu.emanuel.jeremi.fallentowersgle.tile.MapData.GoalData;
 import hu.emanuel.jeremi.fallentowersgle.tile.TextureLibrary;
 import hu.emanuel.jeremi.fallentowersgle.tile.TileType;
 
@@ -55,6 +56,8 @@ public class EditorWindow extends JFrame implements ActionListener {
     public TileType chosenType = TileType.wall;
     public ItemType chosenItemType = ItemType.ZAPPER;
     public EnemyType chosenEnemyType = EnemyType.BZZZZ_TOWER;
+    
+    public LevelData level;
 
     public static class TileAttributes {
 
@@ -303,6 +306,10 @@ public class EditorWindow extends JFrame implements ActionListener {
     public void setPlayerPose(int x, int y) {
         playerX = x;
         playerY = y;
+    }
+    
+    public void setGoalPose(int x, int y) {
+        gridPane.goal = new GoalData(x, y);
     }
 
     public void setMapSize(int w, int h) {

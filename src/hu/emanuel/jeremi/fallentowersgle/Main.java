@@ -6,28 +6,22 @@ import javax.swing.UnsupportedLookAndFeelException;
 
 import hu.emanuel.jeremi.fallentowersgle.gui.EditorWindow;
 
-public class main {
+public class Main {
 
-    public main() {
+    public Main() {
         // TODO Auto-generated constructor stub
     }
 
     public static void main(String[] args) {
         try {
             UIManager.setLookAndFeel("com.sun.java.swing.plaf.motif.MotifLookAndFeel");
-        } catch (ClassNotFoundException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (InstantiationException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (UnsupportedLookAndFeelException e) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+        // TODO Auto-generated catch block
+        // TODO Auto-generated catch block
+        // TODO Auto-generated catch block
 
         SwingUtilities.invokeLater(() -> {
             new EditorWindow();

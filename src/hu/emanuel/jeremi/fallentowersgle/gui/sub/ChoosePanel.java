@@ -28,7 +28,8 @@ public class ChoosePanel extends JPanel implements MouseListener {
 
     public EditorWindow gui;
 
-    private int w = 100, h = 1000;
+    private final int w = 100;
+    private int h = 1000;
 
     private boolean isDoorChoosingMode = false;
 

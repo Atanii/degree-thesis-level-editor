@@ -1,22 +1,15 @@
 package hu.emanuel.jeremi.fallentowersgle.gui.sub;
 
-import static hu.emanuel.jeremi.fallentowersgle.common.Tile64.*;
-import hu.emanuel.jeremi.fallentowersgle.gui.*;
 import hu.emanuel.jeremi.fallentowersgle.common.Labels;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.GridBagConstraints;
 import java.awt.GridLayout;
-import java.awt.LayoutManager;
 import java.util.ArrayList;
 import java.util.Arrays;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -206,7 +199,6 @@ public class AttributePanel extends JPanel {
 
         enemyRB.addActionListener((e) -> {
             disableAllNonRadio();
-            //enableEnemyAttributes();
             select(TileType.enemy);
         });
 
@@ -289,26 +281,10 @@ public class AttributePanel extends JPanel {
             l.setEnabled(false);
             l.setVisible(false);
         }
-//		id.setEnabled(false);
-//		value.setEnabled(false);
-//		time.setEnabled(false);
-//		sendercode.setEnabled(false);
-//		messagecode.setEnabled(false);
-//		ceiling.setEnabled(false);
-//		height.setEnabled(false);
-//		inside.setEnabled(false);
-//		virtual.setEnabled(false);
-//		storey.setEnabled(false);
     }
 
     private void enableSpriteAttributes() {
         disableAllNonRadio();
-        /*
-		l_value.setVisible(true);
-		value.setVisible(true);
-		l_value.setEnabled(true);
-		value.setEnabled(true);
-         */
     }
 
     private void enableWallAttributes() {
