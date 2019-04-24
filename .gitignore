@@ -2,4 +2,4 @@ bin/
 build/
 *.tow
 dist/
-**/private/
+nbproject/private/
